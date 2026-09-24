@@ -3,7 +3,7 @@ from telegram.ext import Application, CommandHandler, ContextTypes
 from http.server import BaseHTTPRequestHandler, HTTPServer
 import json, threading
 
-TOKEN = "8845154239:AAELzzKtiQTrHYAf4KF5DdmI-hL-8oWS4ws"
+TOKEN = "8845154239:AAHGUkPxpxdZoIhMr1SdBNreCQGzSBMBcpw"
 CHAT_ID = 8860670510
 
 async def start(update, context):
