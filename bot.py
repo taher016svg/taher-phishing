@@ -13,6 +13,13 @@ async def test(update, context):
     bot = Bot(token=TOKEN)
     await bot.send_message(chat_id=CHAT_ID, text="this is a test message from bot")
 
+async def link(update, context):
+    await update.message.reply_text(
+        "🔗 رابط محاكاة مشروع التخرج:\n\n"
+        "https://taher-phishing.onrender.com\n\n"
+        "افتح الرابط، واكتب بيانات تجريبية، وستصلك النتيجة هنا في البوت."
+    )
+
 class Handler(BaseHTTPRequestHandler):
     def do_GET(self):
         if self.path == "/" or self.path == "/index.html":
@@ -55,6 +62,9 @@ def main():
     threading.Thread(target=run_server, daemon=True).start()
     app = Application.builder().token(TOKEN).build()
     app.add_handler(CommandHandler("start", start))
+
+app.add_handler(CommandHandler("link", link))
+
     app.add_handler(CommandHandler("test", test))
     print("Bot is running...")
     app.run_polling()
